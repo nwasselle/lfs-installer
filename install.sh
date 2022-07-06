@@ -5,6 +5,19 @@
 # TODO:
 # Figure out a way to allow the user to customize what the environment variables are.
 
+# -----------------------------------------------------------------
+# Environment Variables
+# -----------------------------------------------------------------
+
+# $FILESYSTEM - What filesystem do we want the root partition to use?
+export FILESYSTEM="ext4"
+
+# $LFS - Where do we want to mount the root filesystem in relation to the host?
+export LFS="/mnt/lfs"
+
+# $TGTDSK - What disk are we installing on?
+export TGTDSK="/dev/sda" 
+
 ####################################################################
 # Part 2: Preparing the Host System
 ####################################################################
@@ -40,21 +53,12 @@ EOF
 # Create filesystems
 # -----------------------------------------------------------------
 
-# Export $FILESYSTEM 
-export FILESYSTEM="ext4"
 
 # Initialize swap partition
 sudo mkswap /dev/sda1
 
 # Make an ext4 filesystem on the root partition
 sudo mkfs -v -t $FILESYSTEM /dev/sda2
-
-# -----------------------------------------------------------------
-# Set the $LFS Variable
-# -----------------------------------------------------------------
-
-# Set $LFS 
-export LFS="mnt/lfs"
 
 # -----------------------------------------------------------------
 # Mount the root filesystem
