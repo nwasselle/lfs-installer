@@ -64,10 +64,10 @@ export LFS="mnt/lfs"
 sudo mkdir $LFS
 
 # Mounts the directory 
-mount -v -t $FILESYSTEM /dev/sda2 $LFS
+sudo mount -v -t $FILESYSTEM /dev/sda2 $LFS
 
 # Turns on the swap partition
-/sbin/swapon -v /dev/sda1
+sudo /sbin/swapon -v /dev/sda1
 
 ####################################################################
 # Part 3: Packages and Patches
