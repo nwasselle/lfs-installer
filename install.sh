@@ -6,7 +6,7 @@
 # Figure out a way to allow the user to customize what the environment variables are.
 
 ####################################################################
-Part 2: Preparing the Host System
+# Part 2: Preparing the Host System
 ####################################################################
 
 # -----------------------------------------------------------------
@@ -70,7 +70,7 @@ mount -v -t $FILESYSTEM /dev/sda2 $LFS
 /sbin/swapon -v /dev/sda1
 
 ####################################################################
-Part 3: Packages and Patches
+# Part 3: Packages and Patches
 ####################################################################
 
 
