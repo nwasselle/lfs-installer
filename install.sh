@@ -109,6 +109,19 @@ sudo /sbin/swapon -v /dev/sda1
 # Part 3: Packages and Patches
 ####################################################################
 
+# -----------------------------------------------------------------
+# Setup
+# -----------------------------------------------------------------
+
+# Make the sources directory
+sudo mkdir -v $LFS/sources
+
+# Make the directory sticky
+sudo chmod -v a+wt $LFS/sources
+
+# Get the tarballs for the required packages
+wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
+
 
 
 
