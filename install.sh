@@ -122,6 +122,69 @@ sudo chmod -v a+wt $LFS/sources
 # Get the tarballs for the required packages
 wget --input-file=wget-list --continue --directory-prefix=$LFS/sources
 
+####################################################################
+# Part 4: Packages and Patches
+####################################################################
+
+# -----------------------------------------------------------------
+# Make a directory hierarchy for the target
+# -----------------------------------------------------------------
+
+# Make /etc, /var and /usr
+sudo mkdir -pv $LFS/{etc,var} 
+sudo mkdir -pv $LFS/usr/{bin,lib,sbin}
+
+# Make the $LFS/tools directory
+sudo mkdir -pv $LFS/tools
+
+# Make symlinks between /usr files and $LFS files
+for i in bin lib sbin; do
+  ln -sf /usr/$i $LFS/$i
+done
+
+# If we are running on an x86_64 architecture, make $LFS/lib64
+case $(uname -m) in
+  x86_64) mkdir -pv $LFS/lib64 ;;
+esac
+
+# -----------------------------------------------------------------
+# Add the LFS user
+# -----------------------------------------------------------------
+
+# Add the lfs group and user
+sudo groupadd lfs
+sudo useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+
+# Make lfs the owner of $LFS and all directories under it
+sudo chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools,sources}
+case $(uname -m) in
+  x86_64) sudo chown -v lfs $LFS/lib64 ;;
+esac
+
+# Execute all following commands as the lfs user
+exec sudo -u lfs /bin/sh - << 'EOF'
+
+# -----------------------------------------------------------------
+# Set up the environment
+# -----------------------------------------------------------------
+
+# Create a new .bash_profile
+cat > ~/.bash_profile << "END"
+exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w$' /bin/bash
+END
+
+# End the here doc
+EOF
+
+
+
+
+
+
+
+
+
+
 
 
 
