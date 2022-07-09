@@ -139,12 +139,12 @@ sudo mkdir -pv $LFS/tools
 
 # Make symlinks between /usr files and $LFS files
 for i in bin lib sbin; do
-  ln -sf /usr/$i $LFS/$i
+  sudo ln -sf /usr/$i $LFS/$i
 done
 
 # If we are running on an x86_64 architecture, make $LFS/lib64
 case $(uname -m) in
-  x86_64) mkdir -pv $LFS/lib64 ;;
+  x86_64) sudo mkdir -pv $LFS/lib64 ;;
 esac
 
 # -----------------------------------------------------------------
@@ -156,7 +156,7 @@ sudo groupadd lfs
 sudo useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 
 # Make lfs the owner of $LFS and all directories under it
-sudo chown -v lfs $LFS/{usr{,/*},lib,var,etc,bin,sbin,tools,sources}
+sudo chown -v lfs $LFS/usr/{lib,var,etc,bin,sbin,tools,sources}
 case $(uname -m) in
   x86_64) sudo chown -v lfs $LFS/lib64 ;;
 esac
