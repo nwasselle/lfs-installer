@@ -169,10 +169,35 @@ exec sudo -u lfs /bin/sh - << 'EOF'
 # Set up the environment
 # -----------------------------------------------------------------
 
-# Create a new .bash_profile
+# Replace the running shell with a new, clean one
 cat > ~/.bash_profile << "END"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w$' /bin/bash
 END
+
+# Create the .bashrc file, which the new shell reads from
+cat > ~./bashrc << "EOF"
+sudo set +h
+sudo umask 022
+LFS=/mnt/lfs
+LC_ALL=POSIX
+LFS_TGT=(uname -m)-lfs-linux-gnu
+PATH=/usr/bin
+if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
+PATH=$LFS/tools/bin:$PATH
+CONFIG_SITE=$LFS/usr/share/config.site
+export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
+
+# Check for /etc/bash.bashrc, if present, nullify it
+[ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
+
+# Source the user profile
+source ~/.bash_profile
+
+####################################################################
+# Part 5: Compiling a Cross-Toolchain
+####################################################################
+
+
 
 # End the here doc
 EOF
