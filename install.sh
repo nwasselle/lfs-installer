@@ -156,7 +156,8 @@ sudo groupadd lfs
 sudo useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 
 # Make lfs the owner of $LFS and all directories under it
-sudo chown -v lfs $LFS/usr/{lib,var,etc,bin,sbin,tools,sources}
+sudo chown -v lfs $LFS/{etc,var,usr,tools}
+sudo chown -v lfs $LFS/usr/{bin,lib,sbin}
 case $(uname -m) in
   x86_64) sudo chown -v lfs $LFS/lib64 ;;
 esac
