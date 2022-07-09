@@ -188,10 +188,10 @@ CONFIG_SITE=$LFS/usr/share/config.site
 export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
 
 # Check for /etc/bash.bashrc, if present, nullify it
-[ ! -e /etc/bash.bashrc ] || mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
+[ ! -e /etc/bash.bashrc ] || sudo mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
 
 # Source the user profile
-source ~/.bash_profile
+sudo source ~/.bash_profile
 
 ####################################################################
 # Part 5: Compiling a Cross-Toolchain
