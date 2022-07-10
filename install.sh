@@ -175,7 +175,7 @@ exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w$' /bin/bash
 END
 
 # Create the .bashrc file, which the new shell reads from
-cat > ~/.bashrc << "EOF"
+cat > ~/.bashrc << "END"
 sudo set +h
 sudo umask 022
 LFS=/mnt/lfs
@@ -186,6 +186,7 @@ if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
 PATH=$LFS/tools/bin:$PATH
 CONFIG_SITE=$LFS/usr/share/config.site
 export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
+END
 
 # Check for /etc/bash.bashrc, if present, nullify it
 [ ! -e /etc/bash.bashrc ] || sudo mv -v /etc/bash.bashrc /etc/bash.bashrc.NOUSE
