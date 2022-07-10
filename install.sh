@@ -175,7 +175,7 @@ exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w$' /bin/bash
 END
 
 # Create the .bashrc file, which the new shell reads from
-cat > ~./bashrc << "EOF"
+cat > ~/.bashrc << "EOF"
 sudo set +h
 sudo umask 022
 LFS=/mnt/lfs
