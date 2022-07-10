@@ -51,9 +51,9 @@ sudo apt install xz -y
 # uname -r
 
 # Make required symlinks
-ln -sf /bin/sh /usr/bin/bash
-ln -sf /usr/bin/yacc /usr/bin/bison
-ln -sf /usr/bin/awk /usr/bin/gawk
+sudo ln -sf /bin/sh /usr/bin/bash
+sudo ln -sf /usr/bin/yacc /usr/bin/bison
+sudo ln -sf /usr/bin/awk /usr/bin/gawk
 
 # -----------------------------------------------------------------
 # Partition the Hard Drive
