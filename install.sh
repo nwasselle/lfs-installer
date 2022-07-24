@@ -201,9 +201,28 @@ sudo source ~/.bash_profile
 # Part 5: Compiling a Cross-Toolchain
 ####################################################################
 
+# -----------------------------------------------------------------
+# Binutils
+# -----------------------------------------------------------------
 
+# Unpack the tarball
+tar -xf $LFS/sources/binutils-2.38.tar.xz
 
+# Make a build directory
+mkdir -v $LFS/sources/binutils-2.38/build
 
+# Configure
+$LFS/sources/binutils-2.38/build/../configure --prefix=$LFS/tools \
+--with-sysroot=$LFS \
+--target=$LFS_TGT   \
+--disable-nls       \
+--disable-werror
+
+# Make
+make
+
+# Install
+make install
 
 
 
