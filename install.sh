@@ -155,15 +155,18 @@ esac
 sudo groupadd lfs
 sudo useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 
+# Give lfs a password interactively (Password is of course, lfs)
+cat << EOF | passwd lfs
+lfs
+lfs
+EOF
+
 # Make lfs the owner of $LFS and all directories under it
 sudo chown -v lfs $LFS/{etc,var,usr,tools}
 sudo chown -v lfs $LFS/usr/{bin,lib,sbin}
 case $(uname -m) in
   x86_64) sudo chown -v lfs $LFS/lib64 ;;
 esac
-
-# Execute all following commands as the lfs user
-exec sudo -u lfs /bin/sh - << 'EOF'
 
 # -----------------------------------------------------------------
 # Set up the environment
@@ -198,10 +201,6 @@ sudo source ~/.bash_profile
 # Part 5: Compiling a Cross-Toolchain
 ####################################################################
 
-
-
-# End the here doc
-EOF
 
 
 
