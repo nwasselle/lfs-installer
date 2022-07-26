@@ -18,6 +18,9 @@ export LFS="/mnt/lfs"
 # $TGTDSK - What disk are we installing on?
 export TGTDSK="/dev/sda" 
 
+# $LFS_TGT - The tools directory
+export LFS_TGT="/mnt/lfs/tools"
+
 ####################################################################
 # Part 2: Preparing the Host System
 ####################################################################
@@ -58,9 +61,6 @@ sudo ln -sf /usr/bin/awk /usr/bin/gawk
 # -----------------------------------------------------------------
 # Partition the Hard Drive
 # -----------------------------------------------------------------
-
-# Specify the disk we are to partition, in this case the primary disk
-export TGTDSK="/dev/sda" 
 
 # Use a here document to partition our drive, in this case we have 2GB of swap and the rest allocated to the root filesystem
 # Sed is used to remove comments before piping the instructions to fdisk
