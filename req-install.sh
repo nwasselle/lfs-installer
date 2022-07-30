@@ -17,4 +17,4 @@ sudo apt install python3 -y
 sudo apt install sed -y
 sudo apt install tar -y
 sudo apt install texinfo -y
-sudo apt install xz -y
+
