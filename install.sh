@@ -6,3 +6,5 @@
 bash req-install.sh
 bash req-linker.sh
 
+# Create the build environment
+bash create-env.sh
