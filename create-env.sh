@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Add the lfs user and give them a home directory and password
 sudo groupadd lfs
 sudo useradd -s /bin/bash -g lfs -m -k /dev/null lfs
 
@@ -8,6 +9,7 @@ lfs
 lfs
 EOF
 
+# Add directories under the lfs home directory
 mkdir -pv /home/lfs/lfs 
 
 mkdir -pv /home/lfs/lfs/{etc,var} /home/lfs/lfs/usr/{bin,lib,sbin}
@@ -16,6 +18,13 @@ case $(uname -m) in
   x86_64) mkdir -pv /home/lfs/lfs/lib64 ;;
 esac
 
+mkdir -pv /home/lfs/lfs/{tools,sources}
+
+# Give ownership of these new directories to lfs
+
+
+
+# Configure .bash_profile and .bashrc for the user
 cat > /home/lfs/.bash_profile << "EOF"
 exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash
 EOF
